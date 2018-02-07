@@ -28,11 +28,6 @@ public class AdaptedPerson {
         public String value;
         @XmlAttribute(required = true)
         public boolean isPrivate;
-
-        public int addBlock;
-        public String addStreet;
-        public String addUnit;
-        public String addPostalCode;
     }
 
     @XmlElement(required = true)
@@ -71,10 +66,7 @@ public class AdaptedPerson {
 
         address = new AdaptedContactDetail();
         address.isPrivate = source.getAddress().isPrivate();
-        address.addBlock = source.getAddress().getBlock();
-        address.addStreet = source.getAddress().getStreet();
-        address.addUnit = source.getAddress().getUnit();
-        address.addPostalCode = source.getAddress().getPostalCode();
+        address.value = source.getAddress().value;
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -114,7 +106,7 @@ public class AdaptedPerson {
         final Name name = new Name(this.name);
         final Phone phone = new Phone(this.phone.value, this.phone.isPrivate);
         final Email email = new Email(this.email.value, this.email.isPrivate);
-        final Address address = new Address(this.address.addBlock, this.address.addStreet, this.address.addUnit, this.address.addPostalCode, this.address.isPrivate);
+        final Address address = new Address(this.address.value, this.address.isPrivate);
         final UniqueTagList tags = new UniqueTagList(personTags);
         return new Person(name, phone, email, address, tags);
     }
