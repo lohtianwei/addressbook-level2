@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -105,10 +106,12 @@ public class StorageFile {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
 
-        } catch (IOException ioe) {
-            throw new StorageOperationException("Error writing to file: " + path);
+        } catch (AccessDeniedException ade) {
+            throw new StorageOperationException("Error writing to file " +path+ " as it is READ-ONLY");
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
+        } catch (IOException ioe) {
+            throw new StorageOperationException("Error writing to file " + path);
         }
     }
 
