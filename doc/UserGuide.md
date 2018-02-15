@@ -65,6 +65,19 @@ Examples:
   Returns `John Doe` but not `john`
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
+  
+### Finding all persons containing any keyword in their tags: `findtag`
+Finds persons whose tags contain any of the given keywords.<br>
+Format: `findtag KEYWORD [MORE_KEYWORDS]`
+
+> The search is case sensitive, the order of the keywords does not matter, only the tags are searched, 
+and persons matching at least one keyword will be returned (i.e. `OR` search).
+
+Examples: 
+* `findtag friends`<br>
+  Returns `John Doe` but not `Amy`, assuming `John Doe` has tag `friends` while `Amy` has tag `Friends`
+* `find friends owesMoney`<br>
+  Returns Any person having tags `friends` or `owesMoney`
 
 ### Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>

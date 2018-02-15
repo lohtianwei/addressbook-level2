@@ -27,6 +27,14 @@ public class Tag {
     }
 
     /**
+     * Returns the name of a Tag object
+     *
+     */
+    public String getTagName() {
+        return tagName;
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
